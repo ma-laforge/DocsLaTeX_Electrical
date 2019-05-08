@@ -1,0 +1,115 @@
+%CustomCommands.sty
+\ProvidesPackage{CustomCommands}
+%TODO:
+%   -Provide better interface (options)
+%   -Break out into smaller packages (AM_Math, AM_Circuits, ...)
+%------------------------------------------------------------------------------
+%Package Options
+%------------------------------------------------------------------------------
+\DeclareOption{reim_symb}{%Symbol
+	\newcommand{\imagid}{\Im}
+	\newcommand{\realid}{\Re}
+}
+\DeclareOption{reim_shrthnd}{%Shorthand
+	\newcommand{\imagid}{\mathrm{Im}}
+	\newcommand{\realid}{\mathrm{Re}}
+}
+\DeclareOption{reim_curly}{%Curly braces
+	\newcommand{\imag}[1]{\imagid\left\{#1\right\}}
+	\newcommand{\imagS}[1]{\imagid\{#1\}}
+	\newcommand{\real}[1]{\realid\left\{#1\right\}}
+	\newcommand{\realS}[1]{\realid\{#1\}}
+}%
+\DeclareOption{reim_round}{%Round braces (parenthese)
+	\newcommand{\imag}[1]{\imagid\left(#1\right)}
+	\newcommand{\imagS}[1]{\imagid(#1)}
+	\newcommand{\real}[1]{\realid\left(#1\right)}
+	\newcommand{\realS}[1]{\realid(#1)}
+}%
+%\ExecuteOptions{twoletter_reim,curly_reim}%Specify defaults???
+\ProcessOptions%
+%
+\usepackage{amssymb}%American Mathematical Society symbols
+%amssymb defines: \mathbb, \mathfrak, and other symbols
+\usepackage{yfonts}%Provides access to the "Gothic" typeface
+%\usepackage{eufrak}%Provides access to the "mathfrak" typeface
+\usepackage{units}%Pretty fractions with diagonals (\nicefrac)
+%
+%------------------------------------------------------------------------------
+%General Text
+%------------------------------------------------------------------------------
+\newcommand{\etal}{\textit{et al.}}
+%-----Editing Tools-----
+\newcommand{\edadd}[1]{#1}%Editors should use this command to explicitly flag the addition of new text
+\newcommand{\edrem}[1]{}%Editors should use this command to explicitly flag the removal of text
+%\newcommand{\quoteExpr}[1]{{``}{#1}{''}}
+%-----Enhancements for IEEE tables-----
+\newcommand{\IEEEtablerow}[1]{\IEEEeqnarrayseprow[2pt]\\#1\IEEEeqnarraystrutsize{0pt}{0pt}\\\IEEEeqnarrayseprow[2pt]\\}
+%
+%------------------------------------------------------------------------------
+%Math
+%------------------------------------------------------------------------------
+%-----Braces-----
+%TODO: Find better way to have user specify default braces for different
+%      functions (ex: re/im; Fourier...)
+\newcommand{\bnone}[1]{#1}
+\newcommand{\bcurl}[1]{\left\{#1\right\}}
+\newcommand{\bcurlS}[1]{\{#1\}}
+\newcommand{\brnd}[1]{\left(#1\right)}
+\newcommand{\brndS}[1]{(#1)}
+\newcommand{\bsq}[1]{\left(#1\right)}
+\newcommand{\bsqS}[1]{(#1)}
+%-----General-----
+\newcommand{\defAs}{\triangleq}
+\newcommand{\elemSpace}[1]{\in\mathbb{#1}}%ex: \elemSpace{R}, \elemSpace{N}
+%-----Trigonometry-----
+\newcommand{\csch}{\mathrm{csch}}
+%-----Matrix-----
+\newcommand{\matrixsymbol}[1]{\boldsymbol{#1}} %Requires 'amsmath'
+\newcommand{\mathfunc}[2]{\mathrm{#1}\left(#2\right)}
+\newcommand{\mathfuncS}[2]{\mathrm{#1}(#2)}
+\newcommand{\mathunits}[1]{\left[\mathrm{#1}\right]}
+\newcommand{\matrixtwobytwo}[4]{\left[\begin{IEEEeqnarraybox*}[][c]{,c/c,}#1&#2\\#3&#4\end{IEEEeqnarraybox*}\right]}
+%-----Units-----
+%NOTE: \deg already exists
+\newcommand{\degree}{{^\circ}}
+\newcommand{\mm}{\mathrm{\,mm}}
+\newcommand{\um}{\mathrm{\,\mu m}}
+\newcommand{\maum}{\mathrm{\,mA/\mu m}}
+\newcommand{\V}{\mathrm{\,V}}
+\newcommand{\mV}{\mathrm{\,mV}}
+\newcommand{\Ohm}{\mathrm{\,\Omega}}
+\newcommand{\Npm}{\mathrm{\,Np/m}}
+%-----Physics variables/symbols/constants-----
+\newcommand{\er}{\epsilon_\mathrm{r}}
+%-----Signal analysis-----
+\newcommand{\w}{\omega}
+\newcommand{\Fourier}[1]{\mathfrak{F}\bcurl{#1}}%Requires 'amsmath'
+%\newcommand{\Fourier}[1]{\mathcal{F}\bcurl{#1}}%Requires 'amsmath'
+%\newcommand{\conv}{\star} %Requires 'amsmath'
+\newcommand{\conv}{*} %Requires 'amsmath'
+%-----Signal analysis variables/symbols/constants-----
+\newcommand{\symbSmplT}{\mathfrak{s}}
+%\newcommand{\symbSmplF}{\mathfrak{S}}
+%\newcommand{\symbSmplF}{\textfrak{S}}
+\newcommand{\symbSmplF}{\textgoth{S}}
+%-----Circuit design variables/symbols/constants-----
+\newcommand{\ft}{f_\mathrm{T}}%Transient frequency
+\newcommand{\fmax}{f_\mathrm{MAX}}%Maximum power gain frequency
+\newcommand{\jpkft}{J_{\mathrm{pk}\ft}}%Current density @ peak fT
+\newcommand{\wf}{W_\mathrm{f}}%Transistor width
+\newcommand{\gm}{g_\mathrm{m}}%Transconductance
+\newcommand{\vod}{v_\mathrm{ov}}%Overdrive voltage
+%-----Network Analysis-----
+%TODO: rename tlineT, or tlineABCD
+\newcommand{\tlinetmatrix}[1]{\matrixtwobytwo{\cosh{#1}}{Z_\mathrm{C}\sinh{#1}}{Z^{-1}_\mathrm{C}\sinh{#1}}{\cosh{#1}}}
+%New format:
+	\newcommand{\nwkparamconv}[3]{\mathrm{C}_\mathrm{onv}^{\mathrm{#1}\leftarrow\mathrm{#2}}\left(#3\right)}
+	\newcommand{\nwkparamconvS}[3]{\mathrm{C}_\mathrm{onv}^{\mathrm{#1}\leftarrow\mathrm{#2}}(#3)}
+%New style - uses 'oldgerm':
+	%\newcommand{\nwkparamconv}[3]{\textgoth{#1}\left\{#3\right\}} %Requires 'oldgerm'
+	%\newcommand{\nwkparamconvS}[3]{\textgoth{#1}\{#3\}} %Requires 'oldgerm'
+%Old style - uses 'eufrak':
+	%\newcommand{\nwkparamconv}[2]{\mathfrak{#1}\left\{#2\right\}} %Requires 'eufrak'
+	%\newcommand{\nwkparamconvS}[2]{\mathfrak{#1}\{#2\}} %Requires 'eufrak'
+%Last line

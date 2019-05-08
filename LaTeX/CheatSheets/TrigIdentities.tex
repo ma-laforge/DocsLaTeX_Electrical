@@ -1,0 +1,152 @@
+%TrigIdentities.tex
+%
+\documentclass[journal]{IEEEtran}%
+%\documentclass[draftclsnofoot,peerreview,onecolumn]{IEEEtran}%
+\title{Trigonometric Identities}%
+\author{MA~Laforge}%
+\def\AMSFooterTag{MA Laforge: Trigonometric Identities}
+%
+\usepackage{graphicx}\graphicspath{{./figures/}}%
+%\usepackage{IEEEtrantools}%
+\usepackage{amsmath}%
+\usepackage[reim_shrthnd,reim_curly]{../Common/CustomCommands}%
+\usepackage[sort,compress,noadjust]{cite}%Does not work for some reason
+\usepackage{../Common/Hyphenation}%correct bad hyphenation here
+%
+%*****More custom commands*****
+%
+%*****End of custom commands*****
+%
+\begin{document}%
+\maketitle%
+%
+%------------------------------------------------------------------------------
+%Circular Functions
+%------------------------------------------------------------------------------
+\section{(Circular) Trigonometric Functions}
+%
+\begin{equation}
+	\sin(z)\defAs\frac{e^{iz}-e^{-iz}}{2i}
+	\qquad
+	\cos(z)\defAs\frac{e^{iz}+e^{-iz}}{2}
+	\nonumber
+\end{equation}
+%
+\subsection{Circular Identities}%
+%
+\begin{equation}
+	e^{\pm jx}=\cos x\pm j\sin x
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\sin^2 x=\frac{1-\cos 2x}{2}
+	\qquad
+	\cos^2 x=\frac{1+\cos 2x}{2}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\sin^2 x+\cos^2 x=1
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\sin(2x)=2\sin x\cos x
+	\qquad
+	\cos(2x)=\cos^2x-\sin^2x
+	\nonumber
+\end{equation}
+%
+\begin{IEEEeqnarray}{c}
+	\sin(x\pm y)=\sin x\cos y\pm \cos x\sin y\nonumber
+	\\\cos(x\pm y)=\cos x\cos y\mp \sin x\sin y\nonumber
+\end{IEEEeqnarray}
+%
+%------------------------------------------------------------------------------
+%Hyperbolic Functions
+%------------------------------------------------------------------------------
+\section{Hyperbolic Functions}
+%
+\begin{equation}
+	\sinh(z)\defAs\frac{e^z-e^{-z}}{2}
+	\qquad
+	\cosh(z)\defAs\frac{e^z+e^{-z}}{2}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\mathrm{csch}(z)\defAs\frac{1}{\sinh(z)}
+	\qquad
+	\mathrm{sech}(z)\defAs\frac{1}{\cosh(z)}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\tanh(z)\defAs\frac{\sinh(z)}{\cosh(z)}=\frac{e^{2z}-1}{e^{2z}+1}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\coth(z)\defAs\frac{\cosh(z)}{\sinh(z)}=\frac{e^{2z}+1}{e^{2z}-1}
+	\nonumber
+\end{equation}
+%
+\subsection{Hyperbolic Identities}%
+%
+\begin{equation}
+	\sinh^2(z)=\frac{\cosh(2z)-1}{2}
+	\qquad
+	\cosh^2(z)=\frac{\cosh(2z)+1}{2}
+	\nonumber
+\end{equation}
+%
+\begin{IEEEeqnarray}{c}
+	\cosh^2z-\sinh^2z=1\nonumber
+	\\\cosh z+\sinh z=e^z\nonumber
+	\\\cosh z-\sinh z=e^{-z}\nonumber
+\end{IEEEeqnarray}
+%
+\begin{IEEEeqnarray}{c}
+	\sinh(2z)=2\sinh z\cosh z\nonumber
+	\\\cosh(2z)=2\cosh^2z-1=1+2\sinh^2z\nonumber
+\end{IEEEeqnarray}
+%
+\begin{IEEEeqnarray}{c}
+	\sinh(x+iy)=\sinh x\cos y+i\cosh x\sin y\nonumber
+	\\\cosh(x+iy)=\cosh x\cos y+i\sinh x\sin y\nonumber
+\end{IEEEeqnarray}
+%
+\subsection{Inverse Hyperbolic Functions}
+%
+\begin{equation}
+	\sinh^{-1}(z)=\ln(z+\sqrt{1+z^2})
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\cosh^{-1}(z)=\ln(z+\sqrt{z-1}\sqrt{z+1})
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\tanh^{-1}(z)=\frac{1}{2}[\ln(1+z)-\ln(1-z)]
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\mathrm{csch}^{-1}(z)=\ln\left(\sqrt{\frac{1}{z^2}+1}+\frac{1}{z}\right)
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\mathrm{sech}^{-1}(z)=\ln\left(\sqrt{\frac{1}{z}-1}\sqrt{\frac{1}{z}+1}+\frac{1}{z}\right)
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	\coth^{-1}(z)=\frac{1}{2}\left[\ln\left(1+\frac{1}{z}\right)-\ln\left(1-\frac{1}{z}\right)\right]
+	\nonumber
+\end{equation}
+%
+\end{document}%

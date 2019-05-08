@@ -1,0 +1,128 @@
+%CktDesignEq.tex
+%
+\documentclass[journal]{IEEEtran}%
+%\documentclass[draftclsnofoot,peerreview,onecolumn]{IEEEtran}%
+\title{Circuit Design Equations}%
+\author{MA~Laforge}%
+\def\AMSFooterTag{MA Laforge: Circuit Design Equations}
+%
+\usepackage{graphicx}\graphicspath{{./figures/}}%
+%\usepackage{IEEEtrantools}%
+\usepackage{amsmath}%
+%\usepackage{latexsym}%Provides the \Box command (for sheet resistance)
+\usepackage[reim_shrthnd,reim_curly]{../Common/CustomCommands}%
+\usepackage[sort,compress,noadjust]{cite}%Does not work for some reason
+\usepackage{../Common/Hyphenation}%correct bad hyphenation here
+%
+%*****More custom commands*****
+\newcommand{\dt}{\mathrm{d}t}%
+%
+%*****End of custom commands*****
+%
+\begin{document}%
+\maketitle%
+%
+%------------------------------------------------------------------------------
+\section{Sinusoidal signals}
+%
+\begin{equation}
+	V(t)=V_{pk}\sin(\omega{t}+\phi)
+	\qquad
+	I(t)=I_{pk}\sin(\omega{t}+\phi)
+\label{eq:SinusoidalVI}%##################################################
+\end{equation}
+%
+%------------------------------------------------------------------------------
+\section{Signal Voltage, Current, \& Power}
+%
+\begin{equation}
+	P=\int\limits_{T}^{}{{V^2(t)}\over{RT}}\dt
+	\qquad
+	P=\int\limits_{T}^{}{{RI^2(t)}\over{T}}\dt
+\label{eq:PowerVI}%##################################################
+\end{equation}
+%
+Sub \eqref{eq:SinusoidalVI} in \eqref{eq:PowerVI} \& solving:
+\begin{equation}
+	P={V_{pk}^2\over{2R}}
+	\qquad
+	P={RI_{pk}^2\over{2}}
+	\nonumber
+\end{equation}
+%
+%------------------------------------------------------------------------------
+RMS Voltage \& Current,
+%
+\begin{equation}
+	V_{RMS}\defAs\sqrt{RP}={V_{pk}\over\sqrt{2}}
+	\qquad
+	I_{RMS}\defAs\sqrt{P\over{R}}={I_{pk}\over\sqrt{2}}
+	\nonumber
+\end{equation}
+%
+%------------------------------------------------------------------------------
+\section{Decibels \& Nepers}%
+%\section{$\mathrm{dB, dbW, dBm}$}
+%
+\noindent Power (Decibels),%
+\begin{equation}
+	P_\mathrm{dB}\defAs{10}\log_{10}{P_1\over{P_2}}\,\mathrm{[dB]}
+	\quad\Leftrightarrow\quad
+	{P_1\over{P_2}}=10^{P_\mathrm{dB}\over{10}}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	{}=10\log_{10}{{{V^2_1}R_2}\over{{V^2_2}R_1}}\,\mathrm{[dB]}
+	\quad\Leftrightarrow\quad
+	{V_1\over{V_2}}\sqrt{R_2\over{R_1}}=10^{P_\mathrm{dB}\over{20}}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	{}=10\log_{10}{{{I^2_1}R_1}\over{{I^2_2}R_2}}\,\mathrm{[dB]}
+	\quad\Leftrightarrow\quad
+	{I_1\over{I_2}}\sqrt{R_1\over{R_2}}=10^{P_\mathrm{dB}\over{20}}
+	\nonumber
+\end{equation}
+%
+Power (Nepers),%
+\begin{equation}
+	P_\mathrm{Np}\defAs{1\over{2}}\ln{P_1\over{P_2}}\,\mathrm{[Np]}
+	\quad\Leftrightarrow\quad
+	{P_1\over{P_2}}=e^{2P_\mathrm{Np}}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	{}=\ln{{V_1\sqrt{R_2}\over{V_2\sqrt{R_1}}}}\,\mathrm{[Np]}
+	\quad\Leftrightarrow\quad
+	{V_1\over{V_2}}\sqrt{R_2\over{R_1}}=e^{P_\mathrm{Np}}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	{}=\ln{{I_1\sqrt{R_1}\over{I_2\sqrt{R_2}}}}\,\mathrm{[Np]}
+	\quad\Leftrightarrow\quad
+	{I_1\over{I_2}}\sqrt{R_1\over{R_2}}=e^{P_\mathrm{Np}}
+	\nonumber
+\end{equation}
+%
+Decibels $\Leftrightarrow$ Nepers,%
+%
+\begin{equation}
+	e^{2P_\mathrm{Np}}={P_1\over{P_2}}=10^{P_\mathrm{dB}\over{10}}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	P_\mathrm{dB}={20\over\ln{10}}P_\mathrm{Np}=(20\log_{10}e)P_\mathrm{Np}
+	\nonumber
+\end{equation}
+%
+\begin{equation}
+	1\,\mathrm{[Np]}\approx{8.686}\,\mathrm{[dB]}
+	\nonumber
+\end{equation}
+%
+\end{document}%
