@@ -1,0 +1,133 @@
+%FilterDFE_Equalization.tex
+%
+%\chapter{Chapter}
+%------------------------------------------------------------------------------
+%
+\section{Static DFE Equalization (LTI Channel)}
+%------------------------------------------------------------------------------
+%
+\subsection{Static Channel Model}
+%\subsubsection{DFE Model}
+%-------------------------------------------------------------------------------
+\par Let us consider the general case for transmitting a discrete-time binary signal, $X$, through an LTI channel (Fig.~\ref{fig:DFEModel}):
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.6]{TxRxEqualization}
+	\caption{Channel equalization.}
+\label{fig:TxRxEqualization}%##################################################
+\end{figure}
+%
+\subsection{DFE Model}
+\par The goal of the Rx equalizer will be to re-construct a time-delayed version of $X$ as the discrete-time binary signal, $Y$.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.6]{DFEModel}
+	\caption{DFE Model.}
+\label{fig:DFEModel}%##################################################
+\end{figure}
+%
+\par To achieve this goal, the DFE from Fig.~\ref{fig:DFEModel} will be used:
+\begin{equation}
+	Y_S=C_0 B + \sum\limits_{i=1}^{N}{C_i Y_L e^{-j\w(iT)}}.
+\label{eq:DFE_Eq1}%##################################################
+\end{equation}
+%
+\par For the simple case where the transmit filter $G$ is an ideal pulse generator, $P$:
+\begin{equation}
+	B=XPH
+	\mathrm{.}
+\label{eq:DFE_B_Expr1}%##################################################
+\end{equation}
+%
+\begin{equation}
+	P=
+\begin{cases}
+	1\mathrm{,} & 0\leq t \leq T
+\\
+	0\mathrm{,} & \textrm{otherwise.}
+\end{cases}
+\end{equation}
+%
+\par Break the loop: In an ideal world, the DFE would reconstruct the original signal before sampling it:
+\begin{equation}
+	Y_L = XP e^{-j\w (D-T)}
+	\mathrm{.}
+\label{eq:DFE_YL_Expr1}%##################################################
+\end{equation}
+where $D$ sets the sampling point right before the data is flopped.
+%
+\par Substituting \eqref{eq:DFE_B_Expr1}, and \eqref{eq:DFE_YL_Expr1} into \eqref{eq:DFE_Eq1}, the DFE can therefore be expressed as:
+\begin{equation}
+	Y_S=C_0 XPH + \sum\limits_{i=1}^{N}{C_i XP e^{-j\w(iT+D-T)}}.
+\end{equation}
+%
+\begin{equation}
+	\frac{Y_S}{X}=C_0 HP + P\sum\limits_{i=1}^{N}{C_i e^{-j\w(iT+D-T)}}.
+\end{equation}
+%
+\subsection{Signal Sampling}
+%-------------------------------------------------------------------------------
+\begin{IEEEeqnarray}{rl}
+	\symbSmplT(t, D) &{}\defAs \sum\limits_{-\infty}^{\infty}{\delta\brnd{t-(nT+D)}}
+\\%##################################################
+	\symbSmplT(t, D) &{}= \delta(t-D)\conv\sum\limits_{-\infty}^{\infty}{\delta\brnd{t-nT}}
+\end{IEEEeqnarray}
+\par Thus,
+\begin{IEEEeqnarray}{rl}
+	\symbSmplF(D) &{} \defAs \Fourier{\symbSmplT(t, D)}
+\\%##################################################
+	\symbSmplF(D) &{}= \frac{2\pi e^{-j\w D}}{T}\sum\limits_{k=-\infty}^{\infty}{\delta\brnd{\w-\frac{2\pi k}{T}}}
+\end{IEEEeqnarray}
+%
+\subsection{Amplitude Equalization}
+%-------------------------------------------------------------------------------
+\begin{IEEEeqnarray}{rll}
+	\frac{Y_S}{X} &{}= e^{-j\w D}\mathrm{,}
+	&{}\quad\forall t=iT+D
+\\%##################################################
+	e^{-j\w D} &{}= C_0 HP + P\sum\limits_{i=1}^{N}{C_i e^{-j\w(iT+D-T)}}\mathrm{,}
+	&{}\quad\forall t=iT+D
+\end{IEEEeqnarray}
+%
+\par Part 1, $t=D$:
+\begin{IEEEeqnarray}{rll}
+	e^{-j\w D} &{}= C_0 HP\mathrm{,}
+	&{}\quad t=D
+\\%##################################################
+	\delta(t-D) &{}= C_0 h_P(t)
+	&{}\quad t=D
+\\%##################################################
+	C_0 &{}= 1/h_P(D)
+	&{}
+\end{IEEEeqnarray}
+%
+\par Part 2, $t=iT+D\quad i>0$:
+\begin{IEEEeqnarray}{rll}
+	P\sum\limits_{i=1}^{N}{C_i e^{-j\w(iT+D-T)}} &{}= e^{-j\w D} - C_0 HP\mathrm{,}
+	&{}\quad t=iT+D\quad i>0
+\\%##################################################
+	P \sum\limits_{i=1}^{N}{C_i e^{-j\w(iT+D-T)}} &{}= e^{-j\w D} - C_0 HP\mathrm{,}
+	&{}\quad t=iT+D\quad i>0
+\end{IEEEeqnarray}
+%
+\par If we want to use arbitrary filter $F$ with feedback coefficients:
+\begin{equation}
+	C_i\Rightarrow F C_i\mathrm{,}\quad i>0.
+\end{equation}
+%
+\par Thus we get
+\begin{IEEEeqnarray}{rll}
+	P\sum\limits_{i=1}^{N}{C_i e^{-j\w(iT+D-T)}} &{}= \frac{e^{-j\w D} - C_0 HP}{F}\mathrm{,}
+	&{}\quad t=iT+D\quad i>0
+%\\%##################################################
+\end{IEEEeqnarray}
+%
+\section{Matrix Test}
+%-------------------------------------------------------------------------------
+\begin{IEEEeqnarray}{rl}
+	\matrixsymbol{V}&{}=\matrixsymbol{ZI}
+\label{eq:ZPMatrixEquation}\\%##################################################
+	\nRowColMx{V}{}{N}&{}=\nXnMx{z}{}{n}{n}\nRowColMx{I}{}{N}
+	\textrm{.}
+\end{IEEEeqnarray}
+%Last line

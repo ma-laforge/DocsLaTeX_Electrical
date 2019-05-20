@@ -1,0 +1,57 @@
+%LaforgeDocStyle.sty
+\ProvidesPackage{LaforgeDocStyle}%
+%
+%------------------------------------------------------------------------------
+%Document Style for MA Laforge
+%------------------------------------------------------------------------------
+%1) Desired line spacing can be specified as an argument (default is
+%   double-interline).
+%
+%   Spacing options: singlespacing | onehalfspacing | doublespacing
+%
+%2) Makes use of certain variables that should be declared before the package:
+%
+%Sample use:
+%   \def\AMSFooterTag{Confidential}%Add a footer to the document (optional)
+%   \usepackage[singlespacing]{LaforgeDocStyle}
+%
+%******************************************************************************
+%*                                 IMPORTANT                                  *
+%******************************************************************************
+%The switch "-t letter" must be passed to "dvips" to ensure the "geometry"
+%package functions properly.
+%
+%NOTE: This package makes the necessary changes to allow "book" class to
+%      maximize page usage.
+%
+\newcommand{\setdocspacing}{\usepackage[doublespacing]{setspace}}%Define default spacing
+\DeclareOption{singlespacing}{\renewcommand{\setdocspacing}{\usepackage[singlespacing]{setspace}}}%
+\DeclareOption{onehalfspacing}{\renewcommand{\setdocspacing}{\usepackage[onehalfspacing]{setspace}}}%
+\DeclareOption{doublespacing}{\renewcommand{\setdocspacing}{\usepackage[doublespacing]{setspace}}}%
+\ProcessOptions%
+%
+\setdocspacing%Set document spacing
+\usepackage{times}%
+\usepackage[font=footnotesize]{caption}%small, scriptsize, footnotesize
+\usepackage[left=1in,top=1in,right=.75in,bottom=1in]{geometry}%
+\usepackage{fancyhdr}%
+%\usepackage{lastpage}%Allows counting of total # of pages (\pageref{})
+%
+\setlength{\headheight}{24pt}%For fancy header.
+%
+\fancypagestyle{AMSmainmatter}%
+{%
+	\fancyhf{}%Clear all headers and footers
+	\if@twoside%I think this is defined by the document class file
+		\fancyhead[LE]{\bfseries\thepage\quad\nouppercase{\leftmark}}%\leftmark contains the chapter heading
+		\fancyhead[RO]{\bfseries\nouppercase{\rightmark}\quad\thepage}%\rightmark contains the section heading
+		\fancyfoot[CE,CO]{\AMSFooterTag}%
+	\else
+		\fancyhead[L]{\bfseries\nouppercase{\leftmark}\quad\thepage}%\leftmark contains the chapter heading
+		\fancyfoot[L]{\AMSFooterTag}%
+	\fi
+%\fancyfoot[R]{\thepage\ of \pageref{LastPage}}%
+}%
+\pagestyle{AMSmainmatter}%By default - Must be done after the margins have been changed.
+%
+%Last line
