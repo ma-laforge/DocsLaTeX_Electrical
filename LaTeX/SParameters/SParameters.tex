@@ -1,0 +1,37 @@
+%SParameters.tex
+%
+\documentclass[10pt,letterpaper,twoside,titlepage]{book}%
+\title{S-Parameters}
+\author{MA~Laforge}%
+\def\AMSFooterTag{MA Laforge: S-Parameters}
+\usepackage[singlespacing]{../Common/LaforgeDocStyle}%
+%
+\usepackage{graphicx}\graphicspath{{./figures/}}%
+\usepackage{IEEEtrantools}%
+\usepackage{amsmath}%
+\usepackage{latexsym}%Provides the \Box command (for sheet resistance)
+\usepackage[reim_shrthnd,reim_curly]{../Common/CustomCommands}%
+%\usepackage[reim_symb,reim_round]{CustomCommands}%
+\usepackage[sort,compress,noadjust]{cite}%Does not work for some reason
+\usepackage{../Common/Hyphenation}%correct bad hyphenation here
+%
+%Custom commands:
+\input{SParameters_CustCmds}%
+%
+\begin{document}%
+\frontmatter%The stuff following this command is before the main text (will have Roman page numbering, etc.)
+%
+\mainmatter%The stuff following this command is the main text (will have Arabic page numbering, etc.)
+\input{ChSParams}%
+%
+\backmatter%Supposed to be called before the bibliography & index - I don't know why
+%------------------------------------------------------------------------------
+%Bibliography
+%------------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}%
+\cleardoublepage%Go to next page so that "\addcontentsline" points to the correct page
+	\addcontentsline{toc}{chapter}{\bibname}%Add bibliography to table of contents
+	\bibliography{IEEEfull,../Common/CustomStrings,../Common/ReferenceDB}%
+%
+\end{document}%
+%Last line

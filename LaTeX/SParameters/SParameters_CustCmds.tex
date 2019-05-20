@@ -1,0 +1,54 @@
+%SParameters_CustCmds.tex
+%Defines document-level custom commands
+%
+%Constants
+%------------------------------------------------------------------------------
+\newcommand{\maxfigwidth}{3.15in}%
+%
+%Equation alignment
+%------------------------------------------------------------------------------
+\newcommand{\EAtwocols}[4]{%
+%Defines a 2-column line format for use in IEEEeqnarray.
+%Output format:
+%   [    #1][#2                 ][    #3][#4                 ]
+%      w1        (1-w1)/2-w2        w2         (1-w1)/2
+\parbox[t]{.15\linewidth}{\hfill\begin{IEEEeqnarraybox*}[][t]{r}#1\end{IEEEeqnarraybox*}}%
+\parbox[t]{.35\linewidth}{\begin{IEEEeqnarraybox*}[][t]{l}#2\end{IEEEeqnarraybox*}}%
+\parbox[t]{.075\linewidth}{\hfill\begin{IEEEeqnarraybox*}[][t]{r}#3\end{IEEEeqnarraybox*}}%
+\parbox[t]{.425\linewidth}{\begin{IEEEeqnarraybox*}[][t]{l}#4\end{IEEEeqnarraybox*}}%
+}%
+%Matrix builders
+%------------------------------------------------------------------------------
+%Generate n-row column matrix using ellipsis:
+%   nRowColMx{VAR}{SUBSCRIPT}{ROWVAR}
+\newcommand{\nRowColMx}[3]{
+	\left[\begin{IEEEeqnarraybox*}[][c]{,c,}
+		#1_{{#2}1}\\#1_{{#2}2}\\\vdots\\#1_{{#2}{#3}}
+	\end{IEEEeqnarraybox*}\right]
+}
+%Generate n-by-n *diagonal* matrix using ellipsis:
+%   nRowColMx{VAR}{SUBSCRIPT}{DIAGVAR}
+\newcommand{\nXnDiagMx}[3]{
+	\left[\begin{IEEEeqnarraybox*}[][c]{,c/c/c/c,}
+		#1_{{#2}1}&0&\cdots &0\\
+		0&#1_{{#2}2}&\cdots &0\\
+		\vdots &\vdots &\ddots &\vdots\\
+		0&0&\cdots &#1_{{#2}{#3}}
+	\end{IEEEeqnarraybox*}\right]
+}
+%Generate n-by-n matrix using ellipsis:
+%   nRowColMx{VAR}{SUBSCRIPT}{ROWVAR}{COLVAR}
+\newcommand{\nXnMx}[4]{
+	\left[\begin{IEEEeqnarraybox*}[][c]{,c/c/c/c,}
+		#1_{{#2}11}&#1_{{#2}12}&\cdots &#1_{{#2}1{#4}}\\
+		#1_{{#2}21}&#1_{{#2}22}&\cdots &#1_{{#2}2{#4}}\\
+		\vdots &\vdots &\ddots &\vdots\\
+		#1_{{#2}{#3}1}&#1_{{#2}{#3}2}&\cdots &#1_{{#2}{#3}{#4}}
+	\end{IEEEeqnarraybox*}\right]
+}
+%Figure boxes
+%------------------------------------------------------------------------------
+\newcommand{\columnbox}[1]{\parbox{\maxfigwidth}{#1}}%
+\newcommand{\figsidebyside}[2]{\begin{figure}[!ht]\centering{#1}\quad{#2}\end{figure}}%
+%Last Line
+

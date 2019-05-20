@@ -1,0 +1,21 @@
+%ChSParams.tex
+%
+%------------------------------------------------------------------------------
+\chapter{Scattering Parameters}
+%------------------------------------------------------------------------------
+\par Scattering parameters are a powerful analysis tool, providing much insight on the electrical behavior of circuits and devices at, and beyond microwave frequencies. Most vector network analyzers are designed with the built-in capability to display $S$ parameters. To an experienced engineer, $S$ parameter plots can be used to quickly identify problems with a measurement. A good understanding of their precise meaning is therefore essential. \emph{Talk about philosophy behind these derivations in order to place reader into context. Talk about how the derivations will valid for arbitrary complex reference impedances (once everything is hammered out). Talk about the view of pseudo-waves and the mocking of waveguide theory mentionned on p.\ 535 of \cite{pr:Marks_1992}. Talk about alterantive point of view where $S$-parameters are a conceptual tool that can be used to look at real traveling waves, but don't have to. Call pseudo-waves: traveling waves of a conceptual measurement setup. Is the problem of connecting a transmission line of different $Z_\mathrm{C}$ than was used for the measurement that it may alter the circuit's response (ex: might cause different modes to propagate), and thus change the network?? Question: forward/reverse scattering parameters: Is that when the input (port 1) is excited, or simly incident vs. reflected/transmitted???}
+%
+\par The reader is referred to \cite{bk:Collin_1992}\cite{pr:Marks_1992}\cite{bk:Pozar_2005} for a more general treatment, including non-TEM modes. \emph{Verify this statement, and try to include this if possible.}
+%
+%-------------------------------------------------------------------------------
+\subsubsection{Traveling Waves And Pseudo-Waves}
+%-------------------------------------------------------------------------------
+\par Verify the following statements with the theory in \cite{pr:Marks_1992}.
+\par Link to: Scattering and pseudo-scattering matrices.
+\par Traveling waves: for applications where we are interrested in the real power traveling down a transmission line (ex: Calibration Techniques). Are these not also \emph{power waves???}
+\par Pseudo-waves: for applications where the network itself is to be characterised, but measurement/propagation environment is not important.
+\par Ideal $Z_\mathrm{0}=50\Ohm$ pseudo-waves are also used for system-level analyses under the premise that the transmission lines attached to the $S$-parameter network under study can be approximated as lossless lines of the same impedance.
+%
+\input{ChSParams_Formulate}%
+\input{ChSParams_Transmission}%
+%Last line
