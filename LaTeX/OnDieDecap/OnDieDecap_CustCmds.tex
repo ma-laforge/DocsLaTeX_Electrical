@@ -1,0 +1,28 @@
+%OnDieDecap_CustCmds.tex
+%Defines document-level custom commands
+%
+%Constants
+%------------------------------------------------------------------------------
+\newcommand{\maxfigwidth}{3.15in}%
+%
+%Equation alignment
+%------------------------------------------------------------------------------
+\newcommand{\EAtwocols}[4]{%
+%Defines a 2-column line format for use in IEEEeqnarray.
+%Output format:
+%   [    #1][#2                 ][    #3][#4                 ]
+%      w1        (1-w1)/2-w2        w2         (1-w1)/2
+\parbox[t]{.15\linewidth}{\hfill\begin{IEEEeqnarraybox*}[][t]{r}#1\end{IEEEeqnarraybox*}}%
+\parbox[t]{.35\linewidth}{\begin{IEEEeqnarraybox*}[][t]{l}#2\end{IEEEeqnarraybox*}}%
+\parbox[t]{.075\linewidth}{\hfill\begin{IEEEeqnarraybox*}[][t]{r}#3\end{IEEEeqnarraybox*}}%
+\parbox[t]{.425\linewidth}{\begin{IEEEeqnarraybox*}[][t]{l}#4\end{IEEEeqnarraybox*}}%
+}%
+%Matrix builders
+%------------------------------------------------------------------------------
+%None at the moment
+%
+%Figure boxes
+%------------------------------------------------------------------------------
+\newcommand{\columnbox}[1]{\parbox{\maxfigwidth}{#1}}%
+\newcommand{\figsidebyside}[2]{\begin{figure}[!ht]\centering{#1}\quad{#2}\end{figure}}%
+%Last Line

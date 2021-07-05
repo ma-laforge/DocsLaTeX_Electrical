@@ -1,0 +1,38 @@
+%OnDieDecap.tex
+%
+\documentclass[10pt,letterpaper,twoside,titlepage]{article}%
+\title{On-Die Decoupling Strategy}
+\author{MA~Laforge}%
+\makeatletter%\@author & \@title
+\def\AMSFooterTag{\@author}
+\usepackage[singlespacing]{../Common/LaforgeDocStyle}%
+%
+\usepackage{graphicx}\graphicspath{{./figures/}}%
+\usepackage{IEEEtrantools}%
+\usepackage{amsmath}%
+\usepackage{latexsym}%Provides the \Box command (for sheet resistance)
+\usepackage{enumitem}%noitemsep option
+\usepackage[reim_shrthnd,reim_curly]{../Common/CustomCommands}%
+\usepackage[sort,compress,noadjust]{cite}%Does not work for some reason
+\usepackage{../Common/Hyphenation}%correct bad hyphenation here
+%
+%Custom commands:
+\input{OnDieDecap_CustCmds}%
+%
+\begin{document}%
+%\frontmatter%The stuff following this command is before the main text (will have Roman page numbering, etc.)
+%
+%\mainmatter%The stuff following this command is the main text (will have Arabic page numbering, etc.)
+\input{OnDieDecap_Model}%
+%\input{_Test}%
+%
+%\backmatter%Supposed to be called before the bibliography & index - I don't know why
+%------------------------------------------------------------------------------
+%Bibliography
+%------------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}%
+%\clearpage%
+	\bibliography{IEEEfull,../Common/CustomStrings,../Common/ReferenceDB}%
+%
+\end{document}%
+%Last line
