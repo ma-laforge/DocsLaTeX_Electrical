@@ -41,16 +41,30 @@
 %
 \fancypagestyle{AMSmainmatter}%
 {%
+%Info:
+% - Need "\makeatletter" to access "\@author" & "\@title" outside \fancypagestyle
+% - \thepage 	number of the current page
+% - \leftmark 	current chapter name printed like "CHAPTER 3. THIS IS THE CHAPTER TITLE"
+% - \rightmark 	current section name printed like "1.6. THIS IS THE SECTION TITLE"
+% - \chaptername 	the name chapter in the current language. If this is English, it will display "Chapter"
+% - \thechapter 	current chapter number
+% - \thesection 	current section number 
+%Examples:
+% - \fancyfoot[R]{\thepage\ of \pageref{LastPage}}%
+%Examples (book style):
+% - \fancyhead[LE]{\bfseries\thepage\quad\nouppercase{\leftmark}}
+% - \fancyhead[RO]{\bfseries\nouppercase{\rightmark}\quad\thepage}
+%
 	\fancyhf{}%Clear all headers and footers
 	\if@twoside%I think this is defined by the document class file
-		\fancyhead[LE]{\bfseries\thepage\quad\nouppercase{\leftmark}}%\leftmark contains the chapter heading
-		\fancyhead[RO]{\bfseries\nouppercase{\rightmark}\quad\thepage}%\rightmark contains the section heading
+		\fancyhead[LE,RO]{\bfseries\thepage}%
+		\fancyhead[C]{\@title}%
 		\fancyfoot[CE,CO]{\AMSFooterTag}%
 	\else
-		\fancyhead[L]{\bfseries\nouppercase{\leftmark}\quad\thepage}%\leftmark contains the chapter heading
+		\fancyhead[R]{\bfseries\thepage}%
+		\fancyhead[C]{\@title}%
 		\fancyfoot[L]{\AMSFooterTag}%
 	\fi
-%\fancyfoot[R]{\thepage\ of \pageref{LastPage}}%
 }%
 \pagestyle{AMSmainmatter}%By default - Must be done after the margins have been changed.
 %
